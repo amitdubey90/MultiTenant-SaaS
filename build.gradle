@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
+        classpath("mysql:mysql-connector-java:5.1.6")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'storycards'
+    version =  '1.0'
+}
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-release" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("junit:junit")   
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.0.2'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.0.2'
+    compile("mysql:mysql-connector-java:5.1.6")
+    compile("org.springframework:spring-instrument-tomcat:3.0.4.RELEASE")
+	 compile('org.aspectj:aspectjweaver:1.6.2')
+  compile         "org.aspectj:aspectjrt:1.6.10"
+  compile        "org.springframework:spring-aspects:3.2.2.RELEASE"
+  compile  "javax.persistence:persistence-api:1.0"
+  compile  "org.springframework:spring-tx:3.2.2.RELEASE"
+  compile  "org.springframework:spring-orm:3.2.2.RELEASE"
+    
+}
+
+
+
+
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
