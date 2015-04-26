@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 
-@ComponentScan(basePackages = { "app","app.controllers","app.tenants" })
+@ComponentScan(basePackages = { "app","app.controllers","app.services","app.dao" })
 @EnableAutoConfiguration
 @EnableAspectJAutoProxy
 public class Application {
