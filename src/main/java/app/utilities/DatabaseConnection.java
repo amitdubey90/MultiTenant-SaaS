@@ -1,8 +1,11 @@
 package app.utilities;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+
 
 public class DatabaseConnection {
 
@@ -15,7 +18,7 @@ public class DatabaseConnection {
 				e.printStackTrace();
 			}
 			// getting database connection to MySQL server
-			connection = DriverManager.getConnection(ApplicationUtility.getPropertyValue("connectionUrl"), 
+			connection =DriverManager.getConnection(ApplicationUtility.getPropertyValue("connectionUrl"), 
 													 ApplicationUtility.getPropertyValue("username"), 
 					                                 ApplicationUtility.getPropertyValue("password"));
 		} catch (Exception ex) {
