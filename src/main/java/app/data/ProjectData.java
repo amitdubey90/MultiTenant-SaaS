@@ -1,5 +1,7 @@
 package app.data;
 
+import java.util.List;
+
 public class ProjectData {
 	
 	private String projectName;	
@@ -47,6 +49,17 @@ public class ProjectData {
 		this.projectDesc = projectDesc;
 	} 
 	
+	public void fillValues(Data data){
+		List<String> list = data.getValueList();
+		this.recordId = data.getRecordId();
+		if(list.size()>0){
+		this.projectName = list.get(0);
+		this.projectDesc = list.get(1);
+		this.owner = list.get(2);
+		this.startDate = list.get(3);
+		this.endDate = list.get(4);
+		}
+	}
 	public void print(){
 		System.out.println(projectName+" "+projectDesc+" "+owner+" "+startDate+" "+endDate);
 	}

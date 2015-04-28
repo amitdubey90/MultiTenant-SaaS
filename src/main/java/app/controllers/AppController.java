@@ -18,67 +18,68 @@ import app.services.ProjectServiceIfc;
 
 @RestController
 public class AppController {
-	
+
 	@Autowired
 	ProjectServiceIfc projectService;
-	
+
 	/*
-	 * Services for Project management
-	 * 1)create project - done
-	 * 2)update project - done
-	 * 3)delete project - done
-	 * 4)getProjects    - done
-	 * 5)get project details - done
-	 * */
-    
-	@RequestMapping(value="/hello", method=RequestMethod.GET)
-    public @ResponseBody ProjectData hello(@RequestParam("input") String input){
+	 * Services for Project management : 1)create project - done 2)update
+	 * project - 3)delete project - done 4)getProjects - done 5)get project
+	 * details - done
+	 */
+
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	public @ResponseBody
+	ProjectData hello(@RequestParam("input") String input) {
 		ProjectData data = new ProjectData();
 		data.setProjectDesc("sample project");
 		data.setProjectName("Jvalant");
-    	return data;
-    }
-	
+		return data;
+	}
+
 	@ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(method = RequestMethod.POST, value = "/createproject/{userId}")
-    public @ResponseBody boolean createProject(@PathVariable String userId,
-    										   @RequestBody ProjectData projectData){
+	@RequestMapping(method = RequestMethod.POST, value = "/createproject/{userId}")
+	public @ResponseBody
+	boolean createProject(@PathVariable String userId,
+			@RequestBody ProjectData projectData) {
 
-    	return projectService.createProject(userId,projectData);
-    }
-	
+		return projectService.createProject(userId, projectData);
+	}
+
 	@ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping(method = RequestMethod.GET, value = "/getprojects/{userId}")
-    public @ResponseBody List<ProjectData> getProjects(@PathVariable String userId){
+	@RequestMapping(method = RequestMethod.GET, value = "/getprojects/{userId}")
+	public @ResponseBody
+	List<ProjectData> getProjects(@PathVariable String userId) {
 
-		
-    	return projectService.getProjects(userId);
-    }
-	
+		return projectService.getProjects(userId);
+	}
+
 	@ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping(method = RequestMethod.GET, value = "/getprojectdetails/{userId}/{recordId}")
-    public @ResponseBody ProjectData getProjectDetails(@PathVariable String userId,
-    										   @PathVariable String recordId){
+	@RequestMapping(method = RequestMethod.GET, value = "/getprojectdetails/{userId}/{recordId}")
+	public @ResponseBody
+	ProjectData getProjectDetails(@PathVariable String userId,
+			@PathVariable String recordId) {
 
-		
-    	return projectService.getProjectDetails(userId,recordId);
-    }
-	
+		return projectService.getProjectDetails(userId, recordId);
+	}
+
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteproject/{userId}/{recordId}")
-    public @ResponseBody boolean deleteProject(@PathVariable String userId,
-    										   @PathVariable String recordId){
+	@RequestMapping(method = RequestMethod.DELETE, value = "/deleteproject/{userId}/{recordId}")
+	public @ResponseBody
+	boolean deleteProject(@PathVariable String userId,
+			@PathVariable String recordId) {
 
-		
-    	return projectService.deleteProject(userId,recordId);
-    }
-	
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(method = RequestMethod.PUT, value = "/updateproject/{userId}")
-    public @ResponseBody boolean updateProject( @PathVariable String userId,
-    											@RequestBody ProjectData projectData){
+		return projectService.deleteProject(userId, recordId);
+	}
 
-		
-    	return projectService.updateProject(userId,projectData);
-    }
+	//@ResponseStatus(HttpStatus.NO_CONTENT)
+	@RequestMapping(method = RequestMethod.PUT, value = "/updateproject/{userId}")
+	public @ResponseBody
+	ProjectData updateProject(@PathVariable String userId,
+			@RequestBody ProjectData projectData) {
+		projectService.updateProject(userId, projectData);
+		return projectService.getProjectDetails(userId,
+				projectData.getRecordId());
+
+	}
 }
