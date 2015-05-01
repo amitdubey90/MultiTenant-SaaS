@@ -40,7 +40,7 @@ public class AppController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(method = RequestMethod.POST, value = "/createproject/{userId}")
 	public @ResponseBody
-	boolean createProject(@PathVariable String userId,
+	String createProject(@PathVariable String userId,
 			@RequestBody ProjectData projectData) {
 
 		return projectService.createProject(userId, projectData);

@@ -14,7 +14,7 @@ public class ProjectServiceImpl implements ProjectServiceIfc{
 	@Autowired
 	ProjectDaoIfc projectDao;
 
-	public boolean createProject(String userId,ProjectData projectData) {
+	public String createProject(String userId,ProjectData projectData) {
 		// TODO Auto-generated method stub
 		return projectDao.createProject(userId,projectData);
 	}
