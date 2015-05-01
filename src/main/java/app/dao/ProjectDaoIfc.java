@@ -6,7 +6,7 @@ import app.data.ProjectData;
 
 public interface ProjectDaoIfc {
 	
-	public boolean createProject(String userId,ProjectData projectData);
+	public String createProject(String userId,ProjectData projectData);
 	
 	public List<ProjectData> getProjects(String userId);
 	

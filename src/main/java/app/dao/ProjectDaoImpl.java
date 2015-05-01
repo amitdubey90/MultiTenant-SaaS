@@ -18,7 +18,7 @@ import app.utilities.DatabaseQueries;
 @Service("projectDao")
 public class ProjectDaoImpl implements ProjectDaoIfc{
 
-	public boolean createProject(String userId,ProjectData projectData) {
+	public String createProject(String userId,ProjectData projectData) {
 		Connection dbCon = DatabaseConnection.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -26,6 +26,7 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 		//fetching tenant_id from tenant table
 		dbCon = DatabaseConnection.getConnection();
 		int counter =1;
+		String recordId =null;
 		try {
 			stmt = dbCon.prepareCall(DatabaseQueries.CREATE_PROJECT);
 			stmt.setInt(counter++, Integer.parseInt(userId));
@@ -37,15 +38,15 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 			stmt.setString(counter++, projectData.getEndDate());
 			rs = stmt.executeQuery();
 			rs.next();
-			String recordId = rs.getString("record_id");
+			recordId = rs.getString("record_id");
 			DatabaseConnection.closeConnection(dbCon);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return "";
 		}
 		
-		return true;
+		return recordId;
 	}
 
 	public List<ProjectData> getProjects(String userId) {

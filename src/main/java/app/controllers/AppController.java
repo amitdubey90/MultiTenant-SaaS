@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.data.ProjectData;
+import app.data.ProjectStatus;
 import app.services.ProjectServiceIfc;
 
 @RestController
@@ -40,7 +41,7 @@ public class AppController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(method = RequestMethod.POST, value = "/createproject/{userId}")
 	public @ResponseBody
-	boolean createProject(@PathVariable String userId,
+	String createProject(@PathVariable String userId,
 			@RequestBody ProjectData projectData) {
 
 		return projectService.createProject(userId, projectData);
@@ -82,4 +83,16 @@ public class AppController {
 				projectData.getRecordId());
 
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/getprojectstatus/{userId}/{recordId}/{sdlc}")
+	public @ResponseBody
+	ProjectStatus getProjectStatus(@PathVariable String userId,
+			@PathVariable String recordId,
+			@PathVariable String sdlc) {
+		
+		return projectService.getProjectStatus(userId,recordId,sdlc);
+
+	}
+	
+	
 }

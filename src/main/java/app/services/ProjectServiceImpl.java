@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import app.dao.ProjectDaoIfc;
 import app.data.ProjectData;
+import app.data.ProjectStatus;
 
 @Service("projectService")
 public class ProjectServiceImpl implements ProjectServiceIfc{
@@ -14,7 +15,7 @@ public class ProjectServiceImpl implements ProjectServiceIfc{
 	@Autowired
 	ProjectDaoIfc projectDao;
 
-	public boolean createProject(String userId,ProjectData projectData) {
+	public String createProject(String userId,ProjectData projectData) {
 		// TODO Auto-generated method stub
 		return projectDao.createProject(userId,projectData);
 	}
@@ -38,6 +39,12 @@ public class ProjectServiceImpl implements ProjectServiceIfc{
 	public boolean updateProject(String userId, ProjectData projectData) {
 		// TODO Auto-generated method stub
 		return projectDao.updateProject(userId, projectData);
+	}
+
+	public ProjectStatus getProjectStatus(String userId, String recordId,
+			String sdlc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
