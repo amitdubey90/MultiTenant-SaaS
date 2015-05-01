@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import app.services.TenantServiceIfc;
 
 @RestController
-public class UserController {
+public class TenantController {
 
 	@Autowired
 	TenantServiceIfc service;
