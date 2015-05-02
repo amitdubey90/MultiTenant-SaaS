@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import app.data.Data;
 import app.data.ProjectData;
+import app.data.ProjectStatus;
 import app.utilities.DatabaseConnection;
 import app.utilities.DatabaseQueries;
 
@@ -179,6 +180,22 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 		}
 		
 		return true;
+	}
+
+	public ProjectStatus getProjectStatusWaterfall(String userId,
+			String recordId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ProjectStatus getProjectStatusKanban(String userId, String recordId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ProjectStatus getProjectStatusScrum(String userId, String recordId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

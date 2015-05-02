@@ -17,5 +17,9 @@ public class ApplicationUtility {
 		
 		return result;
 	}
+	
+	public static boolean checkNull(String test){
+		return (test==null || test.equalsIgnoreCase(""))?true:false;
+	}
 
 }

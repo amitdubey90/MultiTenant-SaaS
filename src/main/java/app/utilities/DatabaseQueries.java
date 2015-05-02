@@ -16,6 +16,12 @@ public final class DatabaseQueries {
 	
 	public static String UPDATE_PROJECT = "CALL stpUpdateProjectDetails(?,?,?,?,?,?,?,?)";
 	
+	public static String SIGNUP_USER = "insert into user_info (FirstName, LastName, Address,Email,phone,password) values (?,?,?,?,?,?)";
+	
+	public static String GET_USER_ID = "SELECT userId FROM user_info where Email = ?";
+	
+	public static String GET_USER_INFO_BY_MAIL = "Select Email,password from user_info where Email = ?";
+	
 	/*CALL stpInsertUserFieldValues(1,'Project', 'test1', 'test2', 'test3', 'test4', 'test5');*/
 
 

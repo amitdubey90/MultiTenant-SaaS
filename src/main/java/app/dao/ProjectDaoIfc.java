@@ -3,6 +3,7 @@ package app.dao;
 import java.util.List;
 
 import app.data.ProjectData;
+import app.data.ProjectStatus;
 
 public interface ProjectDaoIfc {
 	
@@ -15,6 +16,12 @@ public interface ProjectDaoIfc {
 	public boolean deleteProject(String userId,String recordId);
 	
 	public boolean updateProject(String userId, ProjectData projectData);
+	
+	public ProjectStatus getProjectStatusWaterfall(String userId, String recordId);
+	
+	public ProjectStatus getProjectStatusKanban(String userId, String recordId);
+	
+	public ProjectStatus getProjectStatusScrum(String userId, String recordId);
 
 
 }

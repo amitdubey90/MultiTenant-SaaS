@@ -44,7 +44,14 @@ public class ProjectServiceImpl implements ProjectServiceIfc{
 	public ProjectStatus getProjectStatus(String userId, String recordId,
 			String sdlc) {
 		// TODO Auto-generated method stub
-		return null;
+		if("waterfall".equalsIgnoreCase(sdlc))
+			return projectDao.getProjectStatusWaterfall(userId, recordId);
+		else if("kanban".equalsIgnoreCase(sdlc))
+			return projectDao.getProjectStatusKanban(userId, recordId);
+		else if("scrum".equalsIgnoreCase(sdlc))
+			return projectDao.getProjectStatusScrum(userId, recordId); 
+		else
+		return new ProjectStatus();
 	}
 
 }
