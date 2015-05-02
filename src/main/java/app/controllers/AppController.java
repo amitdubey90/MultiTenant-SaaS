@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.data.ProjectActivities;
+import app.data.ProjectActivity;
 import app.data.ProjectData;
 import app.data.ProjectStatus;
+import app.services.ProjectActivitiesServiceIfc;
 import app.services.ProjectServiceIfc;
 
 @RestController
@@ -22,6 +25,9 @@ public class AppController {
 
 	@Autowired
 	ProjectServiceIfc projectService;
+	@Autowired
+	ProjectActivitiesServiceIfc projectActivities;
+	
 
 	/*
 	 * Services for Project management : 1)create project - done 2)update
@@ -92,6 +98,53 @@ public class AppController {
 		
 		return projectService.getProjectStatus(userId,recordId,sdlc);
 
+	}
+	
+
+	@ResponseStatus(HttpStatus.CREATED)
+	@RequestMapping(method = RequestMethod.POST, value = "/createprojectActivity/{userId}/{projType}/{projId}")
+	public @ResponseBody ProjectActivities createProjectActivity(
+			@PathVariable String userId, @PathVariable String projType,
+			@PathVariable int projId,
+			@RequestBody ProjectActivities projActivity) {
+		 
+		int activityId= projectActivities.createProjectActivity(userId, projType, projId,
+				projActivity);
+		ProjectActivities activities = new ProjectActivities();
+		activities.setActivityId(activityId);
+		return activities;
+	}
+
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@RequestMapping(method = RequestMethod.GET, value = "/getprojectActivities/{userId}/{projId}/{projType}")
+	public @ResponseBody List<List<ProjectActivity>> getProjectActivites(
+			@PathVariable String userId, @PathVariable String projType,
+			@PathVariable String projId) {
+		return projectActivities.getProjectActivites(userId, projId, projType);
+	}
+
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@RequestMapping(method = RequestMethod.DELETE, value = "/deleteprojectActivity/{userId}/{activityId}/{projType}")
+	public @ResponseBody ProjectActivities deleteProjectActivites(
+			@PathVariable String userId, @PathVariable String projType,
+			@PathVariable String activityId) {
+		ProjectActivities activities = new ProjectActivities();
+		boolean status = projectActivities.deleteProjectActivity(userId, activityId, projType);
+		activities.setStatus(status);
+		return activities;
+	}
+
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/updateprojectActivity/{userId}/{projId}/{projType}")
+	public @ResponseBody ProjectActivities updateProjectActivites(
+			@PathVariable String userId, @PathVariable int projId, @PathVariable String projType,
+			@RequestBody ProjectActivities projActivity) {
+		
+		int activityId = projectActivities.updateProjectActivity(userId, projId, projType,
+				projActivity);
+		ProjectActivities activities = new ProjectActivities();
+		activities.setActivityId(activityId);
+		return activities;
 	}
 	
 	
