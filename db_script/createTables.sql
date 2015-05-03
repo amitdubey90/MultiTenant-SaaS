@@ -67,7 +67,7 @@ CREATE TABLE `user_info` (
   `address` varchar(45) DEFAULT NULL,
   `Email` varchar(45) NOT NULL,
   `phone` bigint(10) DEFAULT NULL,
-  PRIMARY KEY (`userId`,`First Name`,`Last Name`,`Email`)
+  PRIMARY KEY (`userId`,`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
