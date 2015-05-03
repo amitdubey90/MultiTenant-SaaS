@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.data.Data;
 import app.data.ProjectActivities;
 import app.data.ProjectActivity;
 import app.data.ProjectData;
@@ -56,7 +57,7 @@ public class AppController {
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@RequestMapping(method = RequestMethod.GET, value = "/getprojects/{userId}")
 	public @ResponseBody
-	List<ProjectData> getProjects(@PathVariable String userId) {
+	List<Data> getProjects(@PathVariable String userId) {
 
 		return projectService.getProjects(userId);
 	}
@@ -64,7 +65,7 @@ public class AppController {
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@RequestMapping(method = RequestMethod.GET, value = "/getprojectdetails/{userId}/{recordId}")
 	public @ResponseBody
-	ProjectData getProjectDetails(@PathVariable String userId,
+	Data getProjectDetails(@PathVariable String userId,
 			@PathVariable String recordId) {
 
 		return projectService.getProjectDetails(userId, recordId);
@@ -82,7 +83,7 @@ public class AppController {
 	//@ResponseStatus(HttpStatus.NO_CONTENT)
 	@RequestMapping(method = RequestMethod.PUT, value = "/updateproject/{userId}")
 	public @ResponseBody
-	ProjectData updateProject(@PathVariable String userId,
+	Data updateProject(@PathVariable String userId,
 			@RequestBody ProjectData projectData) {
 		projectService.updateProject(userId, projectData);
 		return projectService.getProjectDetails(userId,
