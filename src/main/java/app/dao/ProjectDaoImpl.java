@@ -50,9 +50,10 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 		return recordId;
 	}
 
-	public List<ProjectData> getProjects(String userId) {
+	public List<Data> getProjects(String userId) {
 		// TODO Auto-generated method stub
-		List<ProjectData> projects = new ArrayList<ProjectData>();
+		//List<ProjectData> projects = new ArrayList<ProjectData>();
+		List<Data> list =null;
 		Connection dbCon = DatabaseConnection.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -77,7 +78,7 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 			rs = stmt.executeQuery();
 			int current = 0;
 			int previous =0;
-			List<Data> list = new ArrayList<Data>();
+			list = new ArrayList<Data>();
 			Data projectData=new Data();
 			while(rs.next()){
 				current = rs.getInt("recordId");
@@ -88,29 +89,29 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 					list.add(projectData);
 				}
 				projectData.getValueList().add(rs.getString("value"));
-				
+				projectData.getFieldList().add(rs.getString("field_name"));
 			}
 			
-			for(Data data:list){
+			/*for(Data data:list){
 				ProjectData pData = new ProjectData();
 				pData.fillValues(data);
-				projects.add(pData);
-			}
+				//projects.add(pData);
+			}*/
 			DatabaseConnection.closeConnection(dbCon);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return projects;
+		return list;
 	}
 
-	public ProjectData getProjectDetails(String userId,
+	public Data getProjectDetails(String userId,
 			String recordId) {
 		// TODO Auto-generated method stub
 		Connection dbCon = DatabaseConnection.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		ProjectData projectData = new ProjectData();
+		Data data = null;
 		//fetching tenant_id from tenant table
 		dbCon = DatabaseConnection.getConnection();
 		int counter =1;
@@ -118,19 +119,19 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 			stmt = dbCon.prepareStatement(DatabaseQueries.GET_DATA_BY_RECORD_ID);
 			stmt.setInt(counter++, Integer.parseInt(recordId));	
 			rs = stmt.executeQuery();
-			Data data=new Data();
+			data=new Data();
 			while(rs.next()){
 				data.setRecordId(String.valueOf(rs.getInt("recordId")));
 				data.getValueList().add(rs.getString("value"));
-				
+				data.getFieldList().add(rs.getString("field_name"));
 			}
-			projectData.fillValues(data);
+			
 			DatabaseConnection.closeConnection(dbCon);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return projectData;
+		return data;
 	}
 
 	public boolean deleteProject(String userId, String recordId) {
@@ -182,15 +183,61 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 		return true;
 	}
 
-	public ProjectStatus getProjectStatusWaterfall(String userId,
+	public List<Data> getProjectStatusWaterfall(String userId,
 			String recordId) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Data> list =null;
+		
+		Connection dbCon = DatabaseConnection.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		//fetching tenant_id from tenant table
+		dbCon = DatabaseConnection.getConnection();
+		int counter =1;
+		try {
+			stmt = dbCon.prepareStatement(DatabaseQueries.GET_TENANT_ID);
+			stmt.setInt(counter++, Integer.parseInt(userId));
+			stmt.setString(counter++, "Task");
+			
+			rs = stmt.executeQuery();
+			rs.next();
+			int tenantId = rs.getInt("tenantId");
+			counter=1;
+			//get projects for tenantId
+			
+			stmt = dbCon.prepareStatement(DatabaseQueries.GET_TASKS_FOR_PROJECT);
+			stmt.setInt(counter++,tenantId);
+			stmt.setInt(counter++,Integer.parseInt(recordId));
+			
+			rs = stmt.executeQuery();
+			int current = 0;
+			int previous =0;
+			list = new ArrayList<Data>();
+			Data projectData=new Data();
+			while(rs.next()){
+				current = rs.getInt("recordId");
+				if(current!=previous){
+					previous = current;
+					projectData = new Data();
+					projectData.setRecordId(String.valueOf(current));
+					list.add(projectData);
+				}
+				projectData.getValueList().add(rs.getString("value"));
+				projectData.getFieldList().add(rs.getString("field_name"));
+			}
+	
+			DatabaseConnection.closeConnection(dbCon);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 
-	public ProjectStatus getProjectStatusKanban(String userId, String recordId) {
+	public List<Data> getProjectStatusKanban(String userId, String recordId) {
 		// TODO Auto-generated method stub
-		return null;
+		return getProjectStatusWaterfall(userId,recordId);
 	}
 
 	public ProjectStatus getProjectStatusScrum(String userId, String recordId) {

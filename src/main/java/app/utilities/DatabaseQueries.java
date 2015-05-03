@@ -21,6 +21,8 @@ public final class DatabaseQueries {
 	public static String GET_USER_ID = "SELECT userId FROM user_info where Email = ?";
 
 	public static String GET_USER_INFO_BY_MAIL = "Select Email,password from user_info where Email = ?";
+	
+	public static String GET_TASKS_FOR_PROJECT = "SELECT d.recordId,f.field_name,d.value FROM tenant_data d, tenant_field f WHERE d.fieldId = f.fieldId and f.tenantId = ? and recordId IN (SELECT recordId FROM tenant_data WHERE value = ?)";
 
 	/*
 	 * CALL stpInsertUserFieldValues(1,'Project', 'test1', 'test2', 'test3',

@@ -2,15 +2,15 @@ package app.data;
 
 public class ProjectStatus {
 	
-	private int completedTasks;
+	private int completedTasks=0;
 	
-	private int totalTasks;
+	private int totalTasks=0;
 	
-	private int newTasks;
+	private int newTasks=0;
 	
-	private int inProgressTasks;
+	private int inProgressTasks=0;
 	
-	private int percentComplt;
+	private int percentComplt=0;
 
 	public int getCompletedTasks() {
 		return completedTasks;
