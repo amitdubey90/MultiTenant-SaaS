@@ -1,6 +1,5 @@
 package app.dao;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +12,8 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import app.data.ColumnMetaData;
-import app.utilities.ApplicationUtility;
 import app.utilities.DatabaseConnection;
+import app.utilities.DatabaseQueries;
 
 @Repository
 public class TenantDaoImpl implements TenantDaoIfc {
@@ -31,7 +30,7 @@ public class TenantDaoImpl implements TenantDaoIfc {
 			// Set<String> tables = new HashSet<String>()
 			conn = DatabaseConnection.getConnection();
 
-			sql = ApplicationUtility.getPropertyValue("GET_TENANT_TABLES");
+			sql = DatabaseQueries.GET_TENANT_TABLES;
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, sdlcType);
 			rs = pst.executeQuery();
@@ -57,10 +56,10 @@ public class TenantDaoImpl implements TenantDaoIfc {
 					tableColMap.put(tableName, list);
 				}
 			}
-			System.out.println(">>>>>>>" + modelId);
+			//System.out.println(">>>>>>>" + modelId);
 			if (modelId != -1) {
 
-				sql = ApplicationUtility.getPropertyValue("GET_MAX_TENANT_ID");
+				sql = DatabaseQueries.GET_MAX_TENANT_ID;
 				pst = conn.prepareStatement(sql);
 				rs = pst.executeQuery();
 				if (rs.next()) {
@@ -69,11 +68,9 @@ public class TenantDaoImpl implements TenantDaoIfc {
 
 				conn.setAutoCommit(false);
 
-				sql = ApplicationUtility
-						.getPropertyValue("INSERT_TENANT_TABLES");
+				sql = DatabaseQueries.INSERT_TENANT_TABLES;
 				pst = conn.prepareStatement(sql);
-				sql = ApplicationUtility
-						.getPropertyValue("INSERT_TENANT_FIELDS");
+				sql = DatabaseQueries.INSERT_TENANT_FIELDS;
 				PreparedStatement pst2 = conn.prepareStatement(sql);
 
 				for (String key : tableColMap.keySet()) {
@@ -105,8 +102,6 @@ public class TenantDaoImpl implements TenantDaoIfc {
 
 		} catch (SQLException sqe) {
 			sqe.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
 		}
 
 		return result;

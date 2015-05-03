@@ -18,9 +18,9 @@ public class DatabaseConnection {
 				e.printStackTrace();
 			}
 			// getting database connection to MySQL server
-			connection =DriverManager.getConnection(ApplicationUtility.getPropertyValue("connectionUrl"), 
-													 ApplicationUtility.getPropertyValue("username"), 
-					                                 ApplicationUtility.getPropertyValue("password"));
+			connection =DriverManager.getConnection(ApplicationUtility.getPropertyValue("local_connectionUrl"), 
+													 ApplicationUtility.getPropertyValue("local_username"), 
+					                                 ApplicationUtility.getPropertyValue("local_password"));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
