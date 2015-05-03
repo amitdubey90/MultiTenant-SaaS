@@ -10,9 +10,8 @@ public class TenantServiceImpl implements TenantServiceIfc {
 
 	@Autowired
 	TenantDaoIfc dao;
-	
+
 	public boolean createTenant(String userId, String sdlcType) {
 		return dao.createTenant(userId, sdlcType);
 	}
-
 }

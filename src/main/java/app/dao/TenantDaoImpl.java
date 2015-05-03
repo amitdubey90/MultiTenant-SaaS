@@ -57,7 +57,7 @@ public class TenantDaoImpl implements TenantDaoIfc {
 					tableColMap.put(tableName, list);
 				}
 			}
-			System.out.println(">>>>>>>"+modelId);
+			System.out.println(">>>>>>>" + modelId);
 			if (modelId != -1) {
 
 				sql = ApplicationUtility.getPropertyValue("GET_MAX_TENANT_ID");
@@ -72,7 +72,8 @@ public class TenantDaoImpl implements TenantDaoIfc {
 				sql = ApplicationUtility
 						.getPropertyValue("INSERT_TENANT_TABLES");
 				pst = conn.prepareStatement(sql);
-				sql = ApplicationUtility.getPropertyValue("INSERT_TENANT_FIELDS");
+				sql = ApplicationUtility
+						.getPropertyValue("INSERT_TENANT_FIELDS");
 				PreparedStatement pst2 = conn.prepareStatement(sql);
 
 				for (String key : tableColMap.keySet()) {
@@ -82,23 +83,23 @@ public class TenantDaoImpl implements TenantDaoIfc {
 					pst.setInt(colIdx++, modelId);
 					pst.setString(colIdx++, key);
 					pst.addBatch();
-					
+
 					List<ColumnMetaData> cols = tableColMap.get(key);
-					for(ColumnMetaData c : cols){
+					for (ColumnMetaData c : cols) {
 						colIdx = 1;
 						pst2.setInt(colIdx++, tenantId);
 						pst2.setString(colIdx++, c.getColumnName());
 						pst2.setString(colIdx, c.getColumnType());
 						pst2.addBatch();
 					}
-					
+
 					tenantId += 1;
 				}
 
 				pst.executeBatch();
 				pst2.executeBatch();
 				conn.commit();
-			
+
 				result = true;
 			}
 
