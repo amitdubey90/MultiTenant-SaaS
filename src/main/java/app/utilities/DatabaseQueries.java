@@ -6,11 +6,11 @@ public final class DatabaseQueries {
 
 	public static String GET_FIELDS_FOR_PROJECT = "select fieldId,field_name from tenant_field  where tenantId = ?";
 
-	public static String GET_PROJECTS = "select * from tenant_data where tenantId = ?";
+	public static String GET_PROJECTS = "select d.recordId, f.field_name, d.value FROM tenant_data d, tenant_field f where f.tenantId = ? and d.tenantId = ? and d.fieldId = f.fieldId";
 
 	public static String CREATE_PROJECT = "call stpInsertProjectDetails(?,?,?,?,?,?,?)";
 
-	public static String GET_DATA_BY_RECORD_ID = "select * from tenant_data where recordId = ?";
+	public static String GET_DATA_BY_RECORD_ID = "select d.recordId, f.field_name, d.value FROM tenant_data d, tenant_field f where f.tenantId = ? and d.tenantId = ? and d.fieldId = f.fieldId and d.recordId =?";
 
 	public static String DELETE_DATA_BY_RECORD_ID = "delete from tenant_data where recordId=?";
 

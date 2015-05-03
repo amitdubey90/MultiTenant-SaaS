@@ -74,6 +74,7 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 			
 			stmt = dbCon.prepareStatement(DatabaseQueries.GET_PROJECTS);
 			stmt.setInt(counter++,tenantId);
+			stmt.setInt(counter++,tenantId);
 			
 			rs = stmt.executeQuery();
 			int current = 0;
@@ -116,7 +117,17 @@ public class ProjectDaoImpl implements ProjectDaoIfc{
 		dbCon = DatabaseConnection.getConnection();
 		int counter =1;
 		try {
+			stmt = dbCon.prepareStatement(DatabaseQueries.GET_TENANT_ID);
+			stmt.setInt(counter++, Integer.parseInt(userId));
+			stmt.setString(counter++, "Project");
+			
+			rs = stmt.executeQuery();
+			rs.next();
+			int tenantId = rs.getInt("tenantId");
+			counter =1;
 			stmt = dbCon.prepareStatement(DatabaseQueries.GET_DATA_BY_RECORD_ID);
+			stmt.setInt(counter++, tenantId);
+			stmt.setInt(counter++, tenantId);
 			stmt.setInt(counter++, Integer.parseInt(recordId));	
 			rs = stmt.executeQuery();
 			data=new Data();
