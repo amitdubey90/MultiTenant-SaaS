@@ -25,11 +25,16 @@ INSERT INTO `sdlc_tables` VALUES (1,1,'project'),(1,2,'task'),(1,3,'resource')
 ,(2,1,'project'), (2,4,'card'),(2,5,'group')
 ,(3,1,'project'),(3,6,'sprint'), (3,7,'team'), (3,8,'story');
 
-CREATE TABLE `sdlc_fields` (
-  `table_id` int(11) NOT NULL,
-  `field_name` varchar(45) NOT NULL,
-  `field_type` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `tenant_field` (
+  `fieldId` int(11) NOT NULL AUTO_INCREMENT,
+  `tenantId` int(11) NOT NULL,
+  `field_name` varchar(45) DEFAULT NULL,
+  `field_type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`fieldId`,`tenantId`),
+  KEY `tenantId` (`tenantId`),
+  CONSTRAINT `tenantId` FOREIGN KEY (`tenantId`) REFERENCES `tenant` (`tenantId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
 
 INSERT INTO `sdlc_fields` VALUES 
 (1,'project_id','int'),(1,'project_name','varchar')
