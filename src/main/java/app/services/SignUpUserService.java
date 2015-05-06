@@ -1,18 +1,18 @@
 package app.services;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
 
-import app.data.SignUpUser;
+import app.data.UserInfo;
 import app.utilities.ApplicationUtility;
 import app.utilities.DatabaseConnection;
 import app.utilities.DatabaseQueries;
 
 public class SignUpUserService {
 
-	public int addUser(SignUpUser user) {
+	public int addUser(UserInfo user) {
 		int userId = 0;
 		try {
 			Connection dbCon = DatabaseConnection.getConnection();
@@ -41,7 +41,7 @@ public class SignUpUserService {
 		return userId;
 	}
 
-	public boolean login(SignUpUser signupUser) {
+	public boolean login(UserInfo signupUser) {
 		try {
 			System.out.println(signupUser.getEmail()+" "+signupUser.getPassword());
 			Connection dbCon = DatabaseConnection.getConnection();

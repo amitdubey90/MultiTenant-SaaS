@@ -12,6 +12,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import app.data.ColumnMetaData;
+import app.data.UserInfo;
 import app.utilities.DatabaseConnection;
 import app.utilities.DatabaseQueries;
 
@@ -56,7 +57,7 @@ public class TenantDaoImpl implements TenantDaoIfc {
 					tableColMap.put(tableName, list);
 				}
 			}
-			//System.out.println(">>>>>>>" + modelId);
+			// System.out.println(">>>>>>>" + modelId);
 			if (modelId != -1) {
 
 				sql = DatabaseQueries.GET_MAX_TENANT_ID;
@@ -105,5 +106,60 @@ public class TenantDaoImpl implements TenantDaoIfc {
 		}
 
 		return result;
+	}
+
+	public UserInfo userSignup(UserInfo user) {
+
+		String userId = null;
+		try {
+			Connection dbCon = DatabaseConnection.getConnection();
+			PreparedStatement preparedStatement = dbCon.prepareStatement(
+					DatabaseQueries.SIGNUP_USER,
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			preparedStatement.setString(1, user.getFirstname());
+			preparedStatement.setString(2, user.getLastname());
+			preparedStatement.setString(3, user.getAddress());
+			preparedStatement.setString(4, user.getEmail());
+			preparedStatement.setLong(5, user.getPhone());
+			preparedStatement.setString(6, user.getPassword());
+			preparedStatement.executeUpdate();
+
+			ResultSet rs = preparedStatement.getGeneratedKeys();
+			if(rs != null && rs.next())
+				userId = rs.getString(1);
+			DatabaseConnection.closeConnection(dbCon);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		user.setUserId(userId);
+		return user;
+	}
+
+	public UserInfo login(UserInfo user) {
+
+		try {
+			System.out.println(user.getEmail() + " " + user.getPassword());
+			Connection dbCon = DatabaseConnection.getConnection();
+			PreparedStatement preparedStatement = dbCon
+					.prepareStatement(DatabaseQueries.GET_USER_INFO_BY_MAIL);
+			preparedStatement.setString(1, user.getEmail());
+			preparedStatement.setString(2, user.getPassword());
+			ResultSet rs = preparedStatement.executeQuery();
+			rs.next();
+			String email = rs.getString("Email");
+			String userId = rs.getString("userId");
+
+			UserInfo response = new UserInfo();
+			response.setEmail(email);
+			response.setUserId(userId);
+			System.out.println(response);
+			DatabaseConnection.closeConnection(dbCon);
+			return response;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

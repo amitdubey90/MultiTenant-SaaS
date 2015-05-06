@@ -16,11 +16,11 @@ public final class DatabaseQueries {
 
 	public static String UPDATE_PROJECT = "CALL stpUpdateProjectDetails(?,?,?,?,?,?,?,?)";
 
-	public static String SIGNUP_USER = "insert into user_info (FirstName, LastName, Address,Email,phone,password) values (?,?,?,?,?,?)";
+	public static String SIGNUP_USER = "insert into user_info (firstname, lastname, address,email,phone,password) values (?,?,?,?,?,?)";
 
 	public static String GET_USER_ID = "SELECT userId FROM user_info where Email = ?";
 
-	public static String GET_USER_INFO_BY_MAIL = "Select Email,password from user_info where Email = ?";
+	public static String GET_USER_INFO_BY_MAIL = "Select Email,userId from user_info where Email = ? and password = ?";
 	
 	public static String GET_TASKS_FOR_PROJECT = "SELECT d.recordId,f.field_name,d.value FROM tenant_data d, tenant_field f WHERE d.fieldId = f.fieldId and f.tenantId = ? and recordId IN (SELECT recordId FROM tenant_data WHERE value = ?)";
 
@@ -73,35 +73,35 @@ public final class DatabaseQueries {
 	// Queries for Project Activities - End
 
 	// TENANT QUERIES - START
-	public static final String GET_TENANT_TABLES = "SELECT ST.TABLE_ID, ST.TABLE_NAME, "
-			+ "SF.FIELD_NAME, SF.FIELD_TYPE, M.MODELID FROM "
-			+ "SDLC_TABLES ST, SDLC_FIELDS SF, SDLCMODEL M WHERE ST.SDLC_ID = M.MODELID "
-			+ "AND ST.TABLE_ID = SF.TABLE_ID AND M.MODELTYPE = ?";
+	public static final String GET_TENANT_TABLES = "select st.table_id, st.table_name, "
+			+ "sf.field_name, sf.field_type, m.modelid from "
+			+ "sdlc_tables st, sdlc_fields sf, sdlcmodel m where st.sdlc_id = m.modelid "
+			+ "and st.table_id = sf.table_id and m.modeltype = ?";
 
-	public static final String INSERT_TENANT_TABLES = "INSERT INTO TENANT (TENANTID, USERID, MODELID, MODELTABLE) "
-			+ "VALUES (?, ?, ?, ?)";
+	public static final String INSERT_TENANT_TABLES = "insert into tenant (tenantid, userid, modelid, modeltable) "
+			+ "values (?, ?, ?, ?)";
 
-	public static final String INSERT_TENANT_FIELDS = "INSERT INTO TENANT_FIELD (TENANTID, FIELD_NAME, FIELD_TYPE) "
-			+ "VALUES (?, ?, ?)";
+	public static final String INSERT_TENANT_FIELDS = "insert into tenant_field (tenantid, field_name, field_type) "
+			+ "values (?, ?, ?)";
 
-	public static final String GET_MAX_TENANT_ID = "SELECT MAX(TENANTID) FROM TENANT";
-	// TENANT QUERIES - END
+	public static final String GET_MAX_TENANT_ID = "select max(tenantid) from tenant";
+	// tenant queries - end
 
-	// LOOKUP QUERIES START
-	public static final String GET_TABLES_FOR_SDLC = "SELECT T.TENANTID, TF.FIELDID, TF.FIELD_NAME, TF.FIELD_TYPE FROM "
-			+ "TENANT T, TENANT_FIELD TF WHERE  USERID = ? AND MODELTABLE = ? AND T.TENANTID = TF.TENANTID";
+	// lookup queries start
+	public static final String GET_TABLES_FOR_SDLC = "select t.tenantid, tf.fieldid, tf.field_name, tf.field_type from "
+			+ "tenant t, tenant_field tf where  userid = ? and modeltable = ? and t.tenantid = tf.tenantid";
 	
-	public static final String GET_MAX_RECORDID = "SELECT MAX(RECORDID) FROM TENANT_DATA";
+	public static final String GET_MAX_RECORDID = "select max(recordid) from tenant_data";
 	
-	public static final String INSERT_TENANT_DATA = "INSERT INTO TENANT_DATA (RECORDID, TENANTID, FIELDID, VALUE) "
-			+ "VALUES (?, ?, ?, ?)";
+	public static final String INSERT_TENANT_DATA = "insert into tenant_data (recordid, tenantid, fieldid, value) "
+			+ "values (?, ?, ?, ?)";
 	
-	public static final String GET_LOOKUP_VALUES = "SELECT tf.field_name, td.value, td.recordId FROM tenant_data td, tenant_field tf "
-			+ "WHERE td.fieldId = tf.fieldId AND recordId IN "
-			+ "( SELECT td.recordId FROM tenant t , tenant_field tf , tenant_data td "
-			+ "WHERE t.tenantId = tf.tenantId AND t.userId = ? AND td.fieldId = tf.fieldId "
-			+ "AND lower(t.modelTable) = ? AND tf.field_name = 'project_id' "
-			+ "AND td.value = ?) order by td.recordId";
+	public static final String GET_LOOKUP_VALUES = "select tf.field_name, td.value, td.recordid from tenant_data td, tenant_field tf "
+			+ "where td.fieldid = tf.fieldid and recordid in "
+			+ "( select td.recordid from tenant t , tenant_field tf , tenant_data td "
+			+ "where t.tenantid = tf.tenantid and t.userid = ? and td.fieldid = tf.fieldid "
+			+ "and lower(t.modeltable) = ? and tf.field_name = 'project_id' "
+			+ "and td.value = ?) order by td.recordid";
 	// LOOKUP QUERIES END
 
 }

@@ -59,7 +59,7 @@ public class LookupDaoImpl implements LookupDaoIfc {
 
 			if (recordId != -1 && tableId != -1) {
 				conn.setAutoCommit(false);
-				sql = "";
+				sql = DatabaseQueries.INSERT_TENANT_DATA;
 				pst = conn.prepareStatement(sql);
 
 				for (ColumnData cd : values) {
