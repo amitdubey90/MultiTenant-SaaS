@@ -149,10 +149,18 @@ public class TenantDaoImpl implements TenantDaoIfc {
 			rs.next();
 			String email = rs.getString("Email");
 			String userId = rs.getString("userId");
-
+			
+			preparedStatement = dbCon
+					.prepareStatement(DatabaseQueries.GET_MODEL_TYPE_BY_USER_ID);
+			preparedStatement.setInt(1, Integer.parseInt(userId));
+			rs = preparedStatement.executeQuery();
+			rs.next();
+			String sdlcType = rs.getString("modelType");
 			UserInfo response = new UserInfo();
 			response.setEmail(email);
 			response.setUserId(userId);
+			response.setSdlc(sdlcType);
+			
 			System.out.println(response);
 			DatabaseConnection.closeConnection(dbCon);
 			return response;

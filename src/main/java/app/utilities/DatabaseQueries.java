@@ -23,6 +23,8 @@ public final class DatabaseQueries {
 	public static String GET_USER_INFO_BY_MAIL = "Select Email,userId from user_info where Email = ? and password = ?";
 	
 	public static String GET_TASKS_FOR_PROJECT = "SELECT d.recordId,f.field_name,d.value FROM tenant_data d, tenant_field f WHERE d.fieldId = f.fieldId and f.tenantId = ? and recordId IN (SELECT recordId FROM tenant_data WHERE value = ?)";
+	
+	public static String GET_MODEL_TYPE_BY_USER_ID = "select modelType from sdlcmodel where modelId in (select modelId from tenant_model_info where userId = ?)";
 
 	/*
 	 * CALL stpInsertUserFieldValues(1,'Project', 'test1', 'test2', 'test3',

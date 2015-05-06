@@ -11,6 +11,15 @@ public class UserInfo {
 	private String address;
 	private String email;
 	private long phone;
+	private String sdlc;
+
+	public String getSdlc() {
+		return sdlc;
+	}
+
+	public void setSdlc(String sdlc) {
+		this.sdlc = sdlc;
+	}
 
 	public String getAddress() {
 		return address;
