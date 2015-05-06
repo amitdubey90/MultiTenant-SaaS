@@ -1,4 +1,6 @@
-
+<!DOCTYPE html>
+<html>
+<head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -16,7 +18,6 @@
     'stylesheet' type='text/css'><!-- Template js -->
     <link href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular"
     rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
     <noscript>
 			<link rel="stylesheet" type="text/css" href="css/styleNoJS.css" />
 	</noscript>
@@ -33,6 +34,8 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 </head>
+
+<body ng-app="SDLC" ng-controller="projecttable_controller">
     <!-- Start Logo Section -->
 
     <section id="logo-section" class="text-center">
@@ -50,26 +53,20 @@
 
     <div class="mainbody-section text-center">
         <div class="container">
-            <div class="row" id="projectList">
+            <div class="row">
                 <ul class="widget widget-menu unstyled" style="margin-left:29%; width:40%;">
                                 <li style="height:3em;" class="active" ng-repeat="project in data" ng-if="project.fieldList[0] == 'project_name'"><a href="index.html">
                                 <p>
-                                                <strong><a class="go" ng-click="getProjectDetails(project.recordId[0])">{{project.valueList[0]}}<p style="display:none;">{{project.recordId[0]}}</p></a></strong>
+                                                <strong><a href="#modal1" class="go" ng-click="getDetails(project.recordId[0])">{{project.valueList[0]}}<p style="display:none;">{{project.recordId[0]}}</p></a></strong>
                                             </p>
                                 </li>
                             </ul>
                             </a>
             </div><!-- /.row -->
-            <div class="row" id="projectDetails" style="background-image:url(images/Crumpled-paper-texture.jpg); display:none; box-shadow:rgba(100, 100, 100, 0.37) 10px 10px 5px; width:35%; margin-left:33%;">
-            <span>
-            	<p style="padding-top:20px;" ng-repeat="(key,value) in projectDetails">
-                	<strong>{{key}}:{{value}}</strong>
-                </p>
-            </span>
-            </div>
         </div>
     </div>
 	<script data-require="angular.js@*" data-semver="1.2.5" src="http://code.angularjs.org/1.2.5/angular.js"></script> 
+	<script src="js/projectlist.js"></script> 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
@@ -84,3 +81,5 @@
 				});
 			});
 		</script>
+</body>
+</html>
