@@ -118,7 +118,7 @@ public class AppController {
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@RequestMapping(method = RequestMethod.GET, value = "/getprojectActivities/{userId}/{projId}/{projType}")
-	public @ResponseBody List<List<ProjectActivity>> getProjectActivites(
+	public @ResponseBody ProjectActivities getProjectActivites(
 			@PathVariable String userId, @PathVariable String projType,
 			@PathVariable String projId) {
 		return projectActivities.getProjectActivites(userId, projId, projType);

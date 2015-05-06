@@ -15,7 +15,6 @@ import app.utilities.DatabaseConnection;
 import app.utilities.DatabaseQueries;
 import app.utilities.ServiceConstants;
 
-
 @Repository
 public class ProjectActivitiesDaoImpl implements ProjectActivitiesDaoIfc {
 
@@ -235,8 +234,8 @@ public class ProjectActivitiesDaoImpl implements ProjectActivitiesDaoIfc {
 
 	}
 
-	public List<List<ProjectActivity>> getProjectActivites(String userId,
-			String projId, String projType) {
+	public ProjectActivities getProjectActivites(String userId, String projId,
+			String projType) {
 
 		Connection dbCon = DatabaseConnection.getConnection();
 		PreparedStatement stmt = null;
@@ -258,6 +257,7 @@ public class ProjectActivitiesDaoImpl implements ProjectActivitiesDaoIfc {
 			stmt.setString(counter++, modelTable);
 			rs = stmt.executeQuery();
 			rs.next();
+			int fieldId = 0;
 			int tenantId = rs.getInt(ServiceConstants.TENANT_ID);
 			counter = 1;
 			stmt = dbCon
@@ -276,13 +276,21 @@ public class ProjectActivitiesDaoImpl implements ProjectActivitiesDaoIfc {
 				list.add(projActivity);
 			}
 
+			for (ProjectActivity activity : list) {
+
+				if (activity.getColumnName().equalsIgnoreCase("project_id")) {
+					fieldId = Integer.parseInt(activity.getColumnValue());
+					break;
+				}
+			}
 			stmt = dbCon
 					.prepareStatement(DatabaseQueries.GET_INFO_FROM_TENANT_ID);
 			counter = 1;
 			List<List<ProjectActivity>> finalProjectActList = new ArrayList<List<ProjectActivity>>();
+			ProjectActivities projActivities = new ProjectActivities();
 			stmt.setInt(counter++, tenantId);
 			stmt.setString(counter++, projId);
-			stmt.setInt(counter++, 1);
+			stmt.setInt(counter++, fieldId);
 			rs = stmt.executeQuery();
 			ProjectActivity proj;
 			List<ProjectActivity> colList = null;
@@ -316,7 +324,8 @@ public class ProjectActivitiesDaoImpl implements ProjectActivitiesDaoIfc {
 			}
 
 			DatabaseConnection.closeConnection(dbCon);
-			return finalProjectActList;
+			projActivities.setProjActivitiesList(finalProjectActList);
+			return projActivities;
 
 		} catch (Exception e) {
 

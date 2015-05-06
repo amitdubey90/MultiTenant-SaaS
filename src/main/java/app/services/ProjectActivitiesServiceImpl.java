@@ -1,13 +1,10 @@
 package app.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.dao.ProjectActivitiesDaoIfc;
 import app.data.ProjectActivities;
-import app.data.ProjectActivity;
 
 @Service("projectActivities")
 public class ProjectActivitiesServiceImpl implements
@@ -23,7 +20,7 @@ public class ProjectActivitiesServiceImpl implements
 				projActivity);
 	}
 
-	public List<List<ProjectActivity>> getProjectActivites(String userId,
+	public ProjectActivities getProjectActivites(String userId,
 			String projId, String projType) {
 
 		return activitiesDao.getProjectActivites(userId, projId, projType);

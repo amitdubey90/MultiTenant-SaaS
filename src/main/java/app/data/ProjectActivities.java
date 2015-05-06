@@ -11,15 +11,24 @@ import app.data.Data;
 public class ProjectActivities {
 
 	
+	
 
 	List<ProjectActivity> columns;
-	List<ProjectActivity> projActivitiesList;
+	List<List<ProjectActivity>> projActivitiesList;
+	public List<List<ProjectActivity>> getProjActivitiesList() {
+		return projActivitiesList;
+	}
+
+	public void setProjActivitiesList(List<List<ProjectActivity>> projActivitiesList) {
+		this.projActivitiesList = projActivitiesList;
+	}
+
 	private int activityId; 
 	private boolean status;
 	
 	public ProjectActivities(){
 		columns = new ArrayList<ProjectActivity>();
-		projActivitiesList = new ArrayList<ProjectActivity>();
+		projActivitiesList = new ArrayList<List<ProjectActivity>>();
 	}
 
 	public List<ProjectActivity> getColumns() {
