@@ -5,6 +5,7 @@ import java.util.List;
 import app.data.Data;
 import app.data.ProjectData;
 import app.data.ProjectStatus;
+import app.data.SprintStatus;
 
 public interface ProjectServiceIfc {
 	
@@ -19,5 +20,7 @@ public interface ProjectServiceIfc {
 	public boolean updateProject(String userId, ProjectData projectData);
 	
 	public ProjectStatus getProjectStatus(String userId,String recordId,String sdlc);
+	
+	public SprintStatus getScrumProjStatus(String userId,String recordId);
 
 }

@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.data.Data;
 import app.data.ProjectActivities;
-import app.data.ProjectActivity;
 import app.data.ProjectData;
 import app.data.ProjectStatus;
+import app.data.SprintStatus;
 import app.services.ProjectActivitiesServiceIfc;
 import app.services.ProjectServiceIfc;
 
@@ -98,6 +98,15 @@ public class AppController {
 			@PathVariable String sdlc) {
 		
 		return projectService.getProjectStatus(userId,recordId,sdlc);
+
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/getscrumprojstatus/{userId}/{recordId}")
+	public @ResponseBody
+	SprintStatus getProjectStatusForScrum(@PathVariable String userId,
+			@PathVariable String recordId) {
+		
+		return projectService.getScrumProjStatus(userId,recordId);
 
 	}
 	
