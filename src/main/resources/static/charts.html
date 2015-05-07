@@ -1,0 +1,115 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>Elevator - Multipurpose Bootstrap Theme</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet"><!-- Custom CSS -->
+    <link href="css/animate.css" rel="stylesheet"><!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet"><!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel=
+    'stylesheet' type='text/css'><!-- Template js -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/contact_me.js"></script>
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/script.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+        
+        <script type="text/javascript">
+        $(function () {
+            var meterVal = document.getElementById("meterId");
+            meterVal.value = 0.6;
+            var completedTask = $("#headingCT").text();
+            var completedTaskValue = parseInt($("#ctValue").text());
+            console.log(completedTaskValue);
+            var totalTask = $("#headingTT").text();
+            var totalTaskValue = $("#ttValue").text();
+            var remainingTask = $("#headingRT").text();
+            var remainingTaskVal = totalTaskValue-completedTaskValue;
+            var array1=[completedTask,completedTaskValue];
+            var array2=[remainingTask,remainingTaskVal];
+            console.log(array1);
+            console.log(array2);
+            var finalArray=[array1,array2];
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Waterfall Project Status'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Waterfall Project Status',
+            data: finalArray
+        }]
+    });
+});
+    </script>
+</head>
+
+<body>
+    <!-- Start Logo Section -->
+
+    <section id="logo-section" class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="logo text-center">
+                        <h1>Project Manager</h1><span>Manage your SDLCs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Logo Section -->
+    
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; margin-top:5%;"></div>
+<section>
+Status:
+<div id="headingCT">Completed Tasks</div><div id="ctValue">1</div>
+<div id="headingTT">Total Tasks</div><div id="ttValue">3</div>
+<!--/*<div id="headingRT">Remaining Tasks</div><div id="rtValue"></div>*/-->
+<div id="headingPC">Percentage Complete</div><div id="pcValue">33</div>
+
+<p>Percentage Complete</p>
+<meter id="meterId" value=""></meter>
+</section>
+    
+</body>
+
+</html>

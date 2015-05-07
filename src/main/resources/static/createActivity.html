@@ -7,7 +7,7 @@
     <meta content="" name="description">
     <meta content="" name="author">
 
-    <title>Elevator - Multipurpose Bootstrap Theme</title>
+    <title>Project Manager</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
@@ -49,17 +49,17 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Logo Section --><!-- End Logo Section -->
+    </section><!-- End Logo Section -->
     <!-- Start Main Body Section -->
 
     <div class="mainbody-section text-center">
-        <!-- <h1>{{sdlc}}</h1> -->
-            <div ng-hide="sdlc!=waterfall" class="row" id="addActivity" >
+         <!-- <h1>+++{{sdlc}}</h1> -->
+            <div ng-hide="!(sdlc=='waterfall')" class="row" id="addActivity" >
             	<div class="col-lg-6 col-lg-offset-3 text-center">
                         <section class="container" style="margin-left:-54%;">
                             <div class="login" style="width:32%;">
                               <h1>Create New Project Activity</h1>
-                              <form method="post" ng-submit="createProjectActivity(project.recordId)">
+                              <form method="post" ng-submit="createProjectActivities()">
                               	<p><input type="text" id="taskName" placeholder="Task Name" ng-model="activity.task_name"></input></p>
                                 <p><input type="text" id="task_desc" placeholder="Task Description" ng-model="activity.task_desc"></input></p>
                                 <p><input type="text" id="start_date" placeholder="Start Date" ng-model="activity.start_date"></input></p>
@@ -75,12 +75,12 @@
             </div>
         </div>
 
-<!-- <div ng-hide="sdlc!=scrum" class="row" id="addScrum" >
+ <div ng-hide="!(sdlc=='scrum')" class="row" id="addScrum" >
                 <div class="col-lg-6 col-lg-offset-3 text-center">
                         <section class="container" style="margin-left:-54%;">
                             <div class="login" style="width:32%;">
                               <h1>Create New Project Activity</h1>
-                              <form method="post" ng-submit="createProject(project.recordId)">
+                              <form method="post" ng-submit="createProjectActivities(project.recordId)">
                                 <p><input type="text" id="story_name" placeholder="Story Name" ng-model="activity.story_name"></input></p>
                                 <p><input type="text" id="story_points" placeholder="Story Points" ng-model="activity.story_points"></input></p>
                                 <p><input type="text" id="story_days" placeholder="Story Days" ng-model="activity.story_days"></input></p>
@@ -95,14 +95,14 @@
                         </section>
                   </div>
             </div>
-        </div> -->
+        </div> 
 
-<!-- <div ng-hide="sdlc!=kanban" class="row" id="addkanban" >
+ <div ng-hide="!(sdlc=='kanban')" class="row" id="addkanban" >
                 <div class="col-lg-6 col-lg-offset-3 text-center">
                         <section class="container" style="margin-left:-54%;">
                             <div class="login" style="width:32%;">
                               <h1>Create New Project Activity</h1>
-                              <form method="post" ng-submit="createProject(project.recordId)">
+                              <form method="post" ng-submit="createProjectActivities(project.recordId)">
                                 <p><input type="text" id="card_name" placeholder="Story Name" ng-model="activity.card_name"></input></p>
                                 <p><input type="text" id="status_lane" placeholder="Story Points" ng-model="activity.status_lane"></input></p>
                                 <p><input type="text" id="start_date" placeholder="Story Days" ng-model="activity.start_date"></input></p>
@@ -116,7 +116,7 @@
             </div>
         </div>
 
-    </div> -->
+    </div> 
 	<script data-require="angular.js@*" data-semver="1.2.5" src="http://code.angularjs.org/1.2.5/angular.js"></script> 
 	<!--<script src="js/projectlist.js"></script> -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

@@ -13,14 +13,14 @@ function($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       template: function(){
-      	return '<meta charset="utf-8"> <meta content="IE=edge" http-equiv="X-UA-Compatible"> <meta content="width=device-width, initial-scale=1" name="viewport"> <meta content="" name="description"> <meta content="" name="author"> <title>Elevator - Multipurpose Bootstrap Theme</title> <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"> <link href="css/font-awesome.min.css" rel="stylesheet"> <link href="css/animate.css" rel="stylesheet"> <link href="css/style.css" rel="stylesheet"> <link href="http://fonts.googleapis.com/css?family=Lobster" rel= "stylesheet" type="text/css"> <script src="js/jquery-2.1.1.min.js"></script> <script src="bootstrap/js/bootstrap.min.js"></script> <script src="js/jquery.appear.js"></script> <script src="js/contact_me.js"></script> <script src="js/jqBootstrapValidation.js"></script> <script src="js/modernizr.custom.js"></script> <script src="js/script.js"></script> <section id="logo-section" class="text-center"> <div class="container"> <div class="row"> <div class="col-md-12"> <div class="logo text-center"> <h1>elevator</h1><span>Your Business Field</span> </div> </div> </div> </div> </section> <div class="mainbody-section text-center"> <div class="container"> <section class="container" style="margin-left:0%;"> <div class="login"> <h1>Login</h1> <form method="post" ng-submit="login()"> <p><input type="text" name="login" value="" placeholder="Email" ng-model="user.email"></p> <p><input type="password" name="password" value="" placeholder="Password" ng-model="user.password"></p> <p class="remember_me"> <label> <input type="checkbox" name="remember_me" id="remember_me"> Remember me on this computer </label> </p> <a href="#/signup"><input type="submit" name="register" value="Register" style="margin-left:0%; display:inline-block;"></a> <p class="submit" style="display:inline-block; margin-left:38%;"><input type="submit" name="commit" value="Login"></p> </form> </div> <div class="login-help"> <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p> </div> </section> </div> </div> </div> </div> </div>'
+      	return '<meta charset="utf-8"> <meta content="IE=edge" http-equiv="X-UA-Compatible"> <meta content="width=device-width, initial-scale=1" name="viewport"> <meta content="" name="description"> <meta content="" name="author"> <title>Project Manager</title> <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"> <link href="css/font-awesome.min.css" rel="stylesheet"> <link href="css/animate.css" rel="stylesheet"> <link href="css/style.css" rel="stylesheet"> <link href="http://fonts.googleapis.com/css?family=Lobster" rel= "stylesheet" type="text/css"> <script src="js/jquery-2.1.1.min.js"></script> <script src="bootstrap/js/bootstrap.min.js"></script> <script src="js/jquery.appear.js"></script> <script src="js/contact_me.js"></script> <script src="js/jqBootstrapValidation.js"></script> <script src="js/modernizr.custom.js"></script> <script src="js/script.js"></script> <section id="logo-section" class="text-center"> <div class="container"> <div class="row"> <div class="col-md-12"> <div class="logo text-center"> <h1>Project Manager</h1> </div> </div> </div> </div> </section> <div class="mainbody-section text-center"> <div class="container"> <section class="container" style="margin-left:0%;"> <div class="login"> <h1>Login</h1> <form method="post" ng-submit="login()"> <p><input type="text" name="login" value="" placeholder="Email" ng-model="user.email"></p> <p><input type="password" name="password" value="" placeholder="Password" ng-model="user.password"></p> <p class="remember_me"> <label> <input type="checkbox" name="remember_me" id="remember_me"> Remember me on this computer </label> </p> <a href="#/signup"><input type="submit" name="register" value="Register" style="margin-left:0%; display:inline-block;"></a> <p class="submit" style="display:inline-block; margin-left:38%;"><input type="submit" name="commit" value="Login"></p> </form> </div> <div class="login-help"> <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p> </div> </section> </div> </div> </div> </div> </div>'
       },
      // templateUrl:'login.html',
       controller: 'userController'
     })
     .state('signup', {
       url: '/signup',
-      template: '<meta charset="utf-8"> <meta content="IE=edge" http-equiv="X-UA-Compatible"> <meta content="width=device-width, initial-scale=1" name="viewport"> <meta content="" name="description"> <meta content="" name="author"> <title>Elevator - Multipurpose Bootstrap Theme</title> <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"> <link href="css/font-awesome.min.css" rel="stylesheet"> <link href="css/animate.css" rel="stylesheet"> <link href="css/style.css" rel="stylesheet"> <link href="http://fonts.googleapis.com/css?family=Lobster" rel= "stylesheet" type="text/css"> <script src="js/jquery-2.1.1.min.js"></script> <script src="bootstrap/js/bootstrap.min.js"></script> <script src="js/jquery.appear.js"></script> <script src="js/contact_me.js"></script> <script src="js/jqBootstrapValidation.js"></script> <script src="js/modernizr.custom.js"></script> <script src="js/script.js"></script> <section id="logo-section" class="text-center"> <div class="container"> <div class="row"> <div class="col-md-12"> <div class="logo text-center"> <h1>elevator</h1><span>Your Business Field</span> </div> </div> </div> </div> </section> <div class="mainbody-section text-center"> <div class="container"> <div class="row"> <div class="col-lg-6 col-lg-offset-3 text-center"> <section class="container" style="margin-left:-54%;"> <div class="login" style="width:32%;"> <h1>Login</h1> <form method="post" ng-submit="signup()"> <p><input type="text" name="firstname" value="" placeholder="Firstname" ng-model="user.firstname"></p> <p><input type="text" name="lastname" value="" placeholder="Lastname" ng-model="user.lastname"></p> <p><input type="text" name="address" value="" placeholder="Address" ng-model="user.address"></p> <p><input type="text" name="phone" value="" placeholder="Phone" ng-model="user.phone"></p> <p><input type="text" name="login" value="" placeholder="Email" ng-model="user.email"></p> <p><input type="password" name="password" value="" placeholder="Password" ng-model="user.password"></p> <p class="submit"><input type="submit" name="register" value="Register"></p> </form> </div> </section> </div> </div> </div> </div>',
+      template: '<meta charset="utf-8"> <meta content="IE=edge" http-equiv="X-UA-Compatible"> <meta content="width=device-width, initial-scale=1" name="viewport"> <meta content="" name="description"> <meta content="" name="author"> <title>Project Manager</title> <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"> <link href="css/font-awesome.min.css" rel="stylesheet"> <link href="css/animate.css" rel="stylesheet"> <link href="css/style.css" rel="stylesheet"> <link href="http://fonts.googleapis.com/css?family=Lobster" rel= "stylesheet" type="text/css"> <script src="js/jquery-2.1.1.min.js"></script> <script src="bootstrap/js/bootstrap.min.js"></script> <script src="js/jquery.appear.js"></script> <script src="js/contact_me.js"></script> <script src="js/jqBootstrapValidation.js"></script> <script src="js/modernizr.custom.js"></script> <script src="js/script.js"></script> <section id="logo-section" class="text-center"> <div class="container"> <div class="row"> <div class="col-md-12"> <div class="logo text-center"> <h1>Project Manager</h1> </div> </div> </div> </div> </section> <div class="mainbody-section text-center"> <div class="container"> <div class="row"> <div class="col-lg-6 col-lg-offset-3 text-center"> <section class="container" style="margin-left:-54%;"> <div class="login" style="width:32%;"> <h1>Signup</h1> <form method="post" ng-submit="signup()"> <p><input type="text" name="firstname" value="" placeholder="Firstname" ng-model="user.firstname"></p> <p><input type="text" name="lastname" value="" placeholder="Lastname" ng-model="user.lastname"></p> <p><input type="text" name="address" value="" placeholder="Address" ng-model="user.address"></p> <p><input type="text" name="phone" value="" placeholder="Phone" ng-model="user.phone"></p> <p><input type="text" name="login" value="" placeholder="Email" ng-model="user.email"></p> <p><input type="password" name="password" value="" placeholder="Password" ng-model="user.password"></p> <p class="submit"><input type="submit" name="register" value="Register"></p> </form> </div> </section> </div> </div> </div> </div>',
       //templateUrl:'signup.html',
       controller: 'userController'
     })
@@ -50,9 +50,9 @@ function($stateProvider, $urlRouterProvider) {
       controller: 'projectController'
     })
     .state('createActivity', {
-      url: '/createActivity',
+      url: '/createActivity/:recordId',
       templateUrl: 'createActivity.html',
-      controller: 'projectController'
+      controller: 'ActivitiesController'
     });
    
   $urlRouterProvider.otherwise('index');
@@ -254,10 +254,11 @@ app.controller('ActivitiesController', function($scope,
 	var projId = $stateParams.recordId;
 	var projType = userService.data.sdlc;
 	$scope.sdlc = projType;
-	console.log("==========>"+$scope.sdlc)
+	console.log("==========>"+projId)
+	
 	$scope.gotoCreateActivity = function() {
-		console.log("redirecting to createActivity");
-		$location.path("/createActivity");
+		console.log("redirecting to createActivity/"+projId);
+		$location.path("/createActivity/"+projId);
 	}
 	
 	$scope.getLookup = function (lookupType){
@@ -273,13 +274,14 @@ app.controller('ActivitiesController', function($scope,
 		
 	}
 
-	$scope.createProjectActivities = function(projId){
-		
+	$scope.createProjectActivities = function(){
+		console.log("Creating activity");
 		ProjectActivitiesServices.createProjectActivities($scope.activity,userId, projId, projType).success(
 				function(projActivities) {
 					console.log("Inside Controller");
 					$scope.data = projActivities.activityId;
 					console.log("data received is :" + $scope.data);
+					$location.path("/activity/"+projId);
 				});
 	};
 
@@ -336,17 +338,46 @@ app.service('ProjectActivitiesServices', function($http, $stateParams) {
 			return $http.get(url);
 		},
 	
-	createProjectActivities : function(projActivitiyData, userId, projId, projType){
+	createProjectActivities : function(projectActivity, userId, projId, projType){
 		// var userId = $stateParams.userId;
 		console.log("user id is: " + userId);
 		// var projId = $stateParams.projId;
 		console.log("proj id is: " + projId);
 		// var projType = $stateParams.projType;
 		console.log("projtype is: " + projType);
-		// var url = '/createprojectActivity/'+userId+'/'+projId+'/'+projType
+		var url = urlBase+'/createprojectActivity/'+userId+'/'+projType+'/'+projId
 		console.log("URL is: " + url);
 		console.log("Inside createProjAct list");
-		return $http.post(url,projActivitiyData);
+		var request = {"columns":[]};
+		if(projType == 'waterfall'){
+			request["columns"].push({"columnName":"task_name", "columnValue":projectActivity.task_name});
+			request["columns"].push({"columnName":"task_desc", "columnValue":projectActivity.task_desc});
+			request["columns"].push({"columnName":"start_date", "columnValue":projectActivity.start_date});
+			request["columns"].push({"columnName":"end_date", "columnValue":projectActivity.end_date});
+			request["columns"].push({"columnName":"resource_id", "columnValue":projectActivity.resource_id});
+			request["columns"].push({"columnName":"resource_name", "columnValue":projectActivity.resource_name});
+			request["columns"].push({"columnName":"status", "columnValue":projectActivity.status});
+		} else if(projType == 'scrum'){
+			request["columns"].push({"columnName":"story_name", "columnValue":projectActivity.story_name});
+			request["columns"].push({"columnName":"story_points", "columnValue":projectActivity.story_points});
+			request["columns"].push({"columnName":"story_days", "columnValue":projectActivity.story_days});
+			request["columns"].push({"columnName":"sprint_id", "columnValue":projectActivity.sprint_id});
+			request["columns"].push({"columnName":"sprint_name", "columnValue":projectActivity.sprint_name});
+			request["columns"].push({"columnName":"hours_remaining", "columnValue":projectActivity.hours_remaining});
+			request["columns"].push({"columnName":"team_id", "columnValue":projectActivity.team_id});
+			request["columns"].push({"columnName":"status", "columnValue":projectActivity.status});
+		} else if (projType == 'kanban') {
+			request["columns"].push({"columnName":"card_name", "columnValue":projectActivity.card_name});
+			request["columns"].push({"columnName":"status_lane", "columnValue":projectActivity.status_lane});
+			request["columns"].push({"columnName":"start_date", "columnValue":projectActivity.start_date});
+			request["columns"].push({"columnName":"end_date", "columnValue":projectActivity.end_date});
+			request["columns"].push({"columnName":"group_id", "columnValue":projectActivity.group_id});
+			request["columns"].push({"columnName":"status", "columnValue":projectActivity.status});
+		}
+		
+		console.log(JSON.stringify(request));
+
+		return $http.post(url,request);
 	},	
 		
 	updateProjectActivities : function(projActivitiyData, userId, projId, projType){
@@ -356,7 +387,7 @@ app.service('ProjectActivitiesServices', function($http, $stateParams) {
 		console.log("proj id is: " + projId);
 		// var projType = $stateParams.projType;
 		console.log("projtype is: " + projType);
-		var url = '/updateprojectActivity/'+userId+ '/' + projId + '/'+projType
+		var url = urlBase+'/updateprojectActivity/'+userId+ '/' + projId + '/'+projType
 		console.log("URL is: " + url);
 		console.log("Inside updateProjAct list");
 		return $http.put(url,projActivitiyData);
@@ -369,7 +400,7 @@ app.service('ProjectActivitiesServices', function($http, $stateParams) {
 		console.log("proj id is: " + projId);
 		// var projType = $stateParams.projType;
 		console.log("projtype is: " + projType);
-		var url = '/deleteprojectActivity/'+userId+'/'+activityId+'/'+projType
+		var url = urlBase+'/deleteprojectActivity/'+userId+'/'+activityId+'/'+projType
 		console.log("URL is: " + url);
 		console.log("Inside deleteProjAct list");
 		return $http.delete(url);
