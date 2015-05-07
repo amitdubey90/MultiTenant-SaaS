@@ -87,7 +87,7 @@
                                 <p><input type="text" id="sprint_id" placeholder="Sprint ID" ng-model="activity.sprint_id"></input></p>
                                 <p><input type="text" id="sprint_name" placeholder="Sprint Name" ng-model="activity.sprint_name"></input></p>
                                 <p><input type="text" id="hours_remaining" placeholder="Remaining Hours" ng-model="activity.hours_remaining"></input></p>
-                                <p><input type="text" id="team_id" placeholder="Status" ng-model="activity.team_id"></input></p>
+                                <p><input type="text" id="team_id" placeholder="Team Id" ng-model="activity.team_id"></input></p>
                                   <p><input type="text" id="status" placeholder="Status" ng-model="activity.status"></input></p>
                                 <p class="submit"><input type="submit" name="register" value="Create"></p>
                               </form>
@@ -103,11 +103,11 @@
                             <div class="login" style="width:32%;">
                               <h1>Create New Project Activity</h1>
                               <form method="post" ng-submit="createProjectActivities(project.recordId)">
-                                <p><input type="text" id="card_name" placeholder="Story Name" ng-model="activity.card_name"></input></p>
-                                <p><input type="text" id="status_lane" placeholder="Story Points" ng-model="activity.status_lane"></input></p>
-                                <p><input type="text" id="start_date" placeholder="Story Days" ng-model="activity.start_date"></input></p>
-                                <p><input type="text" id="end_date" placeholder="Sprint ID" ng-model="activity.end_date"></input></p>
-                                <p><input type="text" id="group_id" placeholder="Sprint Name" ng-model="activity.group_id"></input></p>
+                                <p><input type="text" id="card_name" placeholder="card Name" ng-model="activity.card_name"></input></p>
+                                <p><input type="text" id="status_lane" placeholder="Status Lane" ng-model="activity.status_lane"></input></p>
+                                <p><input type="text" id="start_date" placeholder="Start Date" ng-model="activity.start_date"></input></p>
+                                <p><input type="text" id="end_date" placeholder="End Date" ng-model="activity.end_date"></input></p>
+                                <p><input type="text" id="group_id" placeholder="Group Id" ng-model="activity.group_id"></input></p>
                                 <p class="submit"><input type="submit" name="register" value="Create"></p>
                               </form>
                             </div>
