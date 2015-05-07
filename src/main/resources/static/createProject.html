@@ -53,34 +53,26 @@
     <!-- Start Main Body Section -->
 
     <div class="mainbody-section text-center">
-        <div class="container">
-            
-            
-            <div class="row" id="activityDetails" style="background-image:url(images/Crumpled-paper-texture.jpg); display:block; box-shadow:rgba(100, 100, 100, 0.37) 10px 10px 5px; width:35%; margin-left:33%;">
-            <span>
-            	<!-- <p style="padding-top:20px;" ng-repeat="(key,value) in projectDetails">
-                	<strong>{{key}}:{{value}}</strong>
-                </p> -->
-                <ul ng-repeat="list in data">
-                    <li >
-                      <span ng-repeat = "l in list">  
-                        {{l.columnName}} : {{l.columnValue}}
-                        <button ng-click="getLookup(l.columnType)" ng-hide="l.columnType!='resource'">Lookup</button>
-                        <br/></span>
-                        
-                    </li>
-                </ul>
-            </span>
-            <button ng-click="gotoCreateActivity()">Add activity</button>
-           <!--  <p class="submit" style="display:inline-block;"><input type="button" class="btn" name="register" 
-                ng-click="getProjectActivities()" value="View Project Activities"></p> -->
-            <!-- <p class="submit" style="display:inline-block;"><input type="button" class="btn" name="register" value="View Project Status"></p> -->
+        
+            <div class="row" id="addProject" >
+            	<div class="col-lg-6 col-lg-offset-3 text-center">
+                        <section class="container" style="margin-left:-54%;">
+                            <div class="login" style="width:32%;">
+                              <h1>Create New Project</h1>
+                              <form method="post" ng-submit="createProject(project.recordId[0])">
+                              	<p><input type="text" id="projectName" placeholder="Project Name" ng-model="projectName"></input></p>
+                                <p><input type="text" id="projectDesc" placeholder="Project Description" ng-model="projectDesc"></input></p>
+                                <p><input type="text" id="owner" placeholder="Owner" ng-model="owner"></input></p>
+                                <p><input type="text" id="startDate" placeholder="Start Date" ng-model="startDate"></input></p>
+                                <p><input type="text" id="endDate" placeholder="End Date" ng-model="endDate"></input></p>
+                                <p class="submit"><input type="submit" name="register" value="Create"></p>
+                              </form>
+                            </div>
+                        </section>
+                  </div><!-- /.col-md-3 -->
             </div>
         </div>
-
-
-            
-                    
+    </div>
 	<script data-require="angular.js@*" data-semver="1.2.5" src="http://code.angularjs.org/1.2.5/angular.js"></script> 
 	<!--<script src="js/projectlist.js"></script> -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

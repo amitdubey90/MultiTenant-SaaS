@@ -1,6 +1,4 @@
-<!doctype html>
-<html>
-<head>
+
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -8,14 +6,14 @@
     <meta content="" name="author">
 
     <title>Elevator - Multipurpose Bootstrap Theme</title>
-    <!-- Bootstrap Core CSS -->
+
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CSS -->
-    <link href="css/font-awesome.min.css" rel="stylesheet"><!-- Custom CSS -->
-    <link href="css/animate.css" rel="stylesheet"><!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet"><!-- Custom Fonts -->
+   
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel=
-    'stylesheet' type='text/css'><!-- Template js -->
+    'stylesheet' type='text/css'>
     <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:Condensed" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
@@ -28,16 +26,8 @@
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/modernizr.custom.js"></script>
     <script src="js/script.js"></script>
-    
-    
-    <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-</head>
 
-<body ng-app="SDLC" ng-controller="projecttable_controller">
-    <!-- Start Logo Section -->
+
 
     <section id="logo-section" class="text-center">
         <div class="container">
@@ -49,8 +39,7 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Logo Section -->
-    <!-- Start Main Body Section -->
+    </section>
     <div class="mainbody-section text-center">
         <div class="container" id="container">
         	<div class="row">
@@ -76,7 +65,7 @@
                             </div>
                     
                             <div class="price">
-                          <a href="#" class="bottom"><p class="cart">Add to cart</p></a>
+                          <button class="bottom" ng-click="createTenant('waterfall')"><p class="cart">Add to cart</p></button>
                             </div>
                         </div>
                     </div>
@@ -100,7 +89,7 @@
                                 </ul>
                             </div>
                             <div class="price">
-                                <a href="#" class="bottom"><p class="cart">Add to cart</p></a>
+                               <button class="bottom" ng-click="createTenant('scrum')"><p class="cart">Add to cart</p></button>
                             </div>
                         </div>
                     </div>
@@ -125,17 +114,17 @@
                                 </ul>
                             </div>
                             <div class="price">
-                          <a href="#" class="bottom"><p class="cart">Add to cart</p></a>
+                          <button class="bottom" ng-click="createTenant('kanban')"><p class="cart">Add to cart</p></button>
                             </div>
                         </div>
                     </div>
 
-                </div><!-- /.row -->
+                </div>
         </div>
     </div>
-</body>
+
 
 <script data-require="angular.js@*" data-semver="1.2.5" src="http://code.angularjs.org/1.2.5/angular.js"></script>
 <script src="js/projectlist.js"></script>
 <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
-</html>
+

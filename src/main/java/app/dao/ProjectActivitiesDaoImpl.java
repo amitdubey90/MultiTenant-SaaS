@@ -273,6 +273,7 @@ public class ProjectActivitiesDaoImpl implements ProjectActivitiesDaoIfc {
 						.getString(ServiceConstants.FIELD_NAME));
 				projActivity.setColumnValue(rs
 						.getString(ServiceConstants.FIELD_ID));
+				projActivity.setColumnType(rs.getString("field_type"));
 				list.add(projActivity);
 			}
 
@@ -305,6 +306,7 @@ public class ProjectActivitiesDaoImpl implements ProjectActivitiesDaoIfc {
 					proj = new ProjectActivity();
 					proj.setColumnName(ServiceConstants.RECORD_ID);
 					proj.setColumnValue(String.valueOf(current));
+					proj.setColumnType("int");
 					colList = new ArrayList<ProjectActivity>();
 					colList.add(proj);
 				}
@@ -315,6 +317,7 @@ public class ProjectActivitiesDaoImpl implements ProjectActivitiesDaoIfc {
 						proj.setColumnName(p.getColumnName());
 						proj.setColumnValue(rs
 								.getString(ServiceConstants.VALUE));
+						proj.setColumnType(p.getColumnType());
 						colList.add(proj);
 						if (colList.size() == list.size() + 1) {
 							finalProjectActList.add(colList);

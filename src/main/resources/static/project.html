@@ -59,7 +59,7 @@
                 <ul class="widget widget-menu unstyled" style="margin-left:29%; width:40%;">
                                 <li style="height:3.6em;" class="active" ng-repeat="project in data" ng-if="project.fieldList[0] == 'project_name'"><a href="index.html">
                                 <p>
-                                                <strong><a  class="go" ng-click="getProjectDetails(project.recordId[0])">{{project.valueList[0]}}<p style="display:none;">{{project.recordId[0]}}</p></a></strong>
+                                                <strong><a  class="go" ng-click="getProjectDetails(project.recordId)">{{project.valueList[0]}}<p style="display:none;">{{project.recordId[0]}}</p></a></strong>
                                             </p>
                                 </li>
                             </ul>
@@ -70,6 +70,7 @@
             	<p style="padding-top:20px;" ng-repeat="(key,value) in projectDetails">
                 	<strong>{{key}}:{{value}}</strong>
                 </p>
+
             </span>
             <p class="submit" style="display:inline-block;"><input type="button" class="btn" name="register" 
                 ng-click="getProjectActivities()" value="View Project Activities"></p>

@@ -6,6 +6,13 @@ public class ProjectActivity {
 
 	String columnName;
 	String columnValue;
+	String columnType;
+	public String getColumnType() {
+		return columnType;
+	}
+	public void setColumnType(String columnType) {
+		this.columnType = columnType;
+	}
 	public String getColumnName() {
 		return columnName;
 	}

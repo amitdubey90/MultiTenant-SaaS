@@ -20,13 +20,13 @@ function($stateProvider, $urlRouterProvider) {
     })
     .state('signup', {
       url: '/signup',
-      template: '<meta charset="utf-8"> <meta content="IE=edge" http-equiv="X-UA-Compatible"> <meta content="width=device-width, initial-scale=1" name="viewport"> <meta content="" name="description"> <meta content="" name="author"> <title>Elevator - Multipurpose Bootstrap Theme</title> <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"> <link href="css/font-awesome.min.css" rel="stylesheet"> <link href="css/animate.css" rel="stylesheet"> <link href="css/style.css" rel="stylesheet"> <link href="http://fonts.googleapis.com/css?family=Lobster" rel= "stylesheet" type="text/css"> <script src="js/jquery-2.1.1.min.js"></script> <script src="bootstrap/js/bootstrap.min.js"></script> <script src="js/jquery.appear.js"></script> <script src="js/contact_me.js"></script> <script src="js/jqBootstrapValidation.js"></script> <script src="js/modernizr.custom.js"></script> <script src="js/script.js"></script> <section id="logo-section" class="text-center"> <div class="container"> <div class="row"> <div class="col-md-12"> <div class="logo text-center"> <h1>elevator</h1><span>Your Business Field</span> </div> </div> </div> </div> </section> <div class="mainbody-section text-center"> <div class="container"> <div class="row"> <div class="col-lg-6 col-lg-offset-3 text-center"> <section class="container" style="margin-left:-54%;"> <div class="login" style="width:32%;"> <h1>Login</h1> <form method="post" action="index.html"> <p><input type="text" name="firstname" value="" placeholder="Firstname" ng-model="user.firstname"></p> <p><input type="text" name="lastname" value="" placeholder="Lastname" ng-model="user.lastname"></p> <p><input type="text" name="address" value="" placeholder="Address" ng-model="user.address"></p> <p><input type="text" name="phone" value="" placeholder="Phone" ng-model="user.phone"></p> <p><input type="text" name="login" value="" placeholder="Email" ng-model="user.email"></p> <p><input type="password" name="password" value="" placeholder="Password" ng-model="user.password"></p> <p class="submit"><input type="submit" name="register" value="Register"></p> </form> </div> </section> </div> </div> </div> </div>',
+      template: '<meta charset="utf-8"> <meta content="IE=edge" http-equiv="X-UA-Compatible"> <meta content="width=device-width, initial-scale=1" name="viewport"> <meta content="" name="description"> <meta content="" name="author"> <title>Elevator - Multipurpose Bootstrap Theme</title> <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"> <link href="css/font-awesome.min.css" rel="stylesheet"> <link href="css/animate.css" rel="stylesheet"> <link href="css/style.css" rel="stylesheet"> <link href="http://fonts.googleapis.com/css?family=Lobster" rel= "stylesheet" type="text/css"> <script src="js/jquery-2.1.1.min.js"></script> <script src="bootstrap/js/bootstrap.min.js"></script> <script src="js/jquery.appear.js"></script> <script src="js/contact_me.js"></script> <script src="js/jqBootstrapValidation.js"></script> <script src="js/modernizr.custom.js"></script> <script src="js/script.js"></script> <section id="logo-section" class="text-center"> <div class="container"> <div class="row"> <div class="col-md-12"> <div class="logo text-center"> <h1>elevator</h1><span>Your Business Field</span> </div> </div> </div> </div> </section> <div class="mainbody-section text-center"> <div class="container"> <div class="row"> <div class="col-lg-6 col-lg-offset-3 text-center"> <section class="container" style="margin-left:-54%;"> <div class="login" style="width:32%;"> <h1>Login</h1> <form method="post" ng-submit="signup()"> <p><input type="text" name="firstname" value="" placeholder="Firstname" ng-model="user.firstname"></p> <p><input type="text" name="lastname" value="" placeholder="Lastname" ng-model="user.lastname"></p> <p><input type="text" name="address" value="" placeholder="Address" ng-model="user.address"></p> <p><input type="text" name="phone" value="" placeholder="Phone" ng-model="user.phone"></p> <p><input type="text" name="login" value="" placeholder="Email" ng-model="user.email"></p> <p><input type="password" name="password" value="" placeholder="Password" ng-model="user.password"></p> <p class="submit"><input type="submit" name="register" value="Register"></p> </form> </div> </section> </div> </div> </div> </div>',
       //templateUrl:'signup.html',
       controller: 'userController'
     })
     .state('selectPlan', {
       url: '/selectPlan',
-      templateUrl: 'selectPlan.html',
+      templateUrl: 'selectionModel.html',
       controller: 'userController'
     })
     .state('lookup', {
@@ -41,8 +41,18 @@ function($stateProvider, $urlRouterProvider) {
     })
     .state('activity', {
       url: '/activity/:recordId',
-      template: '{{data}}',
+      templateUrl: 'activities.html',
       controller: 'ActivitiesController'
+    })
+    .state('createProject', {
+      url: '/createProject',
+      templateUrl: 'createProject.html',
+      controller: 'projectController'
+    })
+    .state('createActivity', {
+      url: '/createActivity',
+      templateUrl: 'createActivity.html',
+      controller: 'projectController'
     });
    
   $urlRouterProvider.otherwise('index');
@@ -132,8 +142,9 @@ app.factory('userService', function($http){
 app.controller('projectController', function($scope, projectService, userService, $location){
 	console.log('inside projectController');
 	var promise;
+	var userId = userService.data.userId;
 
-	promise = projectService.getAllProjects(1);
+	promise = projectService.getAllProjects(userId);
 	promise.then(function (payload){
 			console.log("projects: : "+JSON.stringify(payload));
 			$scope.data = payload.data;
@@ -165,8 +176,30 @@ app.controller('projectController', function($scope, projectService, userService
 
 	$scope.createProjectForm = function() {
 		console.log("Open Project Form");
-		document.getElementById("projectList").style.display="none";
-		document.getElementById("addProject").style.display="block";
+		//document.getElementById("projectList").style.display="none";
+		//document.getElementById("addProject").style.display="block";
+		$location.path("/createProject");
+	}
+
+	$scope.createProject = function() {
+		console.log("Values Submitted");
+		console.log($scope.projectName +" "+ $scope.projectDesc +" "+ $scope.owner+" "+ $scope.startDate+" "+ $scope.endDate);
+		var projectData={"projectName":$scope.projectName,"projectDesc":$scope.projectDesc,"owner":$scope.owner,"startDate":$scope.startDate,"endDate":$scope.endDate}
+		console.log(projectData);
+		promise = projectService.createProject(userId, projectData);
+
+		promise.then(function (payload){
+			console.log("PROJECT CREATED!");
+			$location.path("/project");
+			promise = projectService.getAllProjects(userId);
+			promise.then(function (payload){
+				console.log("projects: : "+JSON.stringify(payload));
+				$scope.data = payload.data;
+				document.getElementById("projectList").style.display="block";
+				document.getElementById("addProject").style.display="none";
+		});
+			
+		});
 	}
 
 	$scope.getProjectActivities = function(projectId){
@@ -198,6 +231,14 @@ app.factory('projectService', function($http){
 			angular.copy(data, project.data);
 		});
 	}
+
+	project.createProject = function (userId, projectData){
+		return $http.post(urlBase+'/createproject/'+userId, projectData)
+		.success(function(data){
+			console.log("Project detail response: "+JSON.stringify(data))
+			angular.copy(data, project.data);
+		});
+	}
 	
 	return project;
 });
@@ -205,21 +246,36 @@ app.factory('projectService', function($http){
 
 
 app.controller('ActivitiesController', function($scope,
-		ProjectActivitiesServices, $stateParams, userService) {
+		ProjectActivitiesServices, $stateParams, userService, lookupService, $location) {
 	
-	console.log("==========>"+$stateParams.recordId)
+	
 	//$scope.data = $stateParams.recordId;
 	var userId = userService.data.userId;
 	var projId = $stateParams.recordId;
 	var projType = userService.data.sdlc;
+	$scope.sdlc = projType;
+	console.log("==========>"+$scope.sdlc)
+	$scope.gotoCreateActivity = function() {
+		console.log("redirecting to createActivity");
+		$location.path("/createActivity");
+	}
 	
-	
+	$scope.getLookup = function (lookupType){
+		console.log("Looking for "+lookupType+" user"+userId+" projjid"+projId);
+		//lookupData
+		var promise = lookupService.getLookupData(userId,projId,lookupType);
+		promise.then(function (payload){
+			console.log("lookup details : "+JSON.stringify(payload.data));
+			document.getElementById("getLookup").style.display="block";
+			document.getElementById("activityDetails").style.display="none";
+			$scope.lookupData = payload.data;
+		});
+		
+	}
 
-	$scope.createProjectActivities = function(){
-		var userId = 1;
-		var projId = 2;
-		var projType = 3;
-		ProjectActivitiesServices.createProjectActivities($scope.projectActivity,userId, projId, projType).success(
+	$scope.createProjectActivities = function(projId){
+		
+		ProjectActivitiesServices.createProjectActivities($scope.activity,userId, projId, projType).success(
 				function(projActivities) {
 					console.log("Inside Controller");
 					$scope.data = projActivities.activityId;
@@ -245,7 +301,7 @@ app.controller('ActivitiesController', function($scope,
 				function(projActivities) {
 					console.log("Inside Controller");
 					$scope.data = projActivities.projActivitiesList;
-					console.log("data received is :" + $scope.data);
+					console.log("data received is :" + JSON.stringify($scope.data));
 				});
 	};
 
@@ -340,8 +396,12 @@ app.factory('lookupService', function($http){
 			data : []
 	}
 
-	lookup.getLookupData = function(){
-		return "hahah";
+	lookup.getLookupData = function(userId, projectId, lookupType){
+		return $http.get(urlBase+'/getLookup/'+lookupType+'?userId='+userId+"&projectId="+projectId)
+		.success(function(data){
+			console.log("Lookup  "+JSON.stringify(data))
+			angular.copy(data, lookup.data);
+		});
 	}
 
 	return lookup;

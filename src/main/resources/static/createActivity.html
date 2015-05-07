@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>Elevator - Multipurpose Bootstrap Theme</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet"><!-- Custom CSS -->
+    <link href="css/animate.css" rel="stylesheet"><!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet"><!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel=
+    'stylesheet' type='text/css'><!-- Template js -->
+    <link href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular"
+    rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+    <noscript>
+			<link rel="stylesheet" type="text/css" href="css/styleNoJS.css" />
+	</noscript>
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&v2' rel='stylesheet' type='text/css'>
+    <!--<script src="js/jquery-2.1.1.min.js"></script>-->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/contact_me.js"></script>
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/script.js"></script><!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <!-- Start Logo Section -->
+
+    <section id="logo-section" class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="logo text-center">
+                        <h1>elevator</h1><span>Your Business Field</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Logo Section -->
+    <!-- Start Main Body Section -->
+
+    <div class="mainbody-section text-center">
+        <!-- <h1>{{sdlc}}</h1> -->
+            <div ng-hide="sdlc!=waterfall" class="row" id="addActivity" >
+            	<div class="col-lg-6 col-lg-offset-3 text-center">
+                        <section class="container" style="margin-left:-54%;">
+                            <div class="login" style="width:32%;">
+                              <h1>Create New Project Activity</h1>
+                              <form method="post" ng-submit="createProjectActivity(project.recordId)">
+                              	<p><input type="text" id="taskName" placeholder="Task Name" ng-model="activity.task_name"></input></p>
+                                <p><input type="text" id="task_desc" placeholder="Task Description" ng-model="activity.task_desc"></input></p>
+                                <p><input type="text" id="start_date" placeholder="Start Date" ng-model="activity.start_date"></input></p>
+                                <p><input type="text" id="end_date" placeholder="End Date" ng-model="activity.end_date"></input></p>
+                                <p><input type="text" id="resource_id" placeholder="Resource ID" ng-model="activity.resource_id"></input></p>
+                                <p><input type="text" id="resource_name" placeholder="Resource Name" ng-model="activity.resource_name"></input></p>
+                                <p><input type="text" id="status" placeholder="Status" ng-model="activity.status"></input></p>
+                                <p class="submit"><input type="submit" name="register" value="Create"></p>
+                              </form>
+                            </div>
+                        </section>
+                  </div><!-- /.col-md-3 -->
+            </div>
+        </div>
+
+<!-- <div ng-hide="sdlc!=scrum" class="row" id="addScrum" >
+                <div class="col-lg-6 col-lg-offset-3 text-center">
+                        <section class="container" style="margin-left:-54%;">
+                            <div class="login" style="width:32%;">
+                              <h1>Create New Project Activity</h1>
+                              <form method="post" ng-submit="createProject(project.recordId)">
+                                <p><input type="text" id="story_name" placeholder="Story Name" ng-model="activity.story_name"></input></p>
+                                <p><input type="text" id="story_points" placeholder="Story Points" ng-model="activity.story_points"></input></p>
+                                <p><input type="text" id="story_days" placeholder="Story Days" ng-model="activity.story_days"></input></p>
+                                <p><input type="text" id="sprint_id" placeholder="Sprint ID" ng-model="activity.sprint_id"></input></p>
+                                <p><input type="text" id="sprint_name" placeholder="Sprint Name" ng-model="activity.sprint_name"></input></p>
+                                <p><input type="text" id="hours_remaining" placeholder="Remaining Hours" ng-model="activity.hours_remaining"></input></p>
+                                <p><input type="text" id="team_id" placeholder="Status" ng-model="activity.team_id"></input></p>
+                                  <p><input type="text" id="status" placeholder="Status" ng-model="activity.status"></input></p>
+                                <p class="submit"><input type="submit" name="register" value="Create"></p>
+                              </form>
+                            </div>
+                        </section>
+                  </div>
+            </div>
+        </div> -->
+
+<!-- <div ng-hide="sdlc!=kanban" class="row" id="addkanban" >
+                <div class="col-lg-6 col-lg-offset-3 text-center">
+                        <section class="container" style="margin-left:-54%;">
+                            <div class="login" style="width:32%;">
+                              <h1>Create New Project Activity</h1>
+                              <form method="post" ng-submit="createProject(project.recordId)">
+                                <p><input type="text" id="card_name" placeholder="Story Name" ng-model="activity.card_name"></input></p>
+                                <p><input type="text" id="status_lane" placeholder="Story Points" ng-model="activity.status_lane"></input></p>
+                                <p><input type="text" id="start_date" placeholder="Story Days" ng-model="activity.start_date"></input></p>
+                                <p><input type="text" id="end_date" placeholder="Sprint ID" ng-model="activity.end_date"></input></p>
+                                <p><input type="text" id="group_id" placeholder="Sprint Name" ng-model="activity.group_id"></input></p>
+                                <p class="submit"><input type="submit" name="register" value="Create"></p>
+                              </form>
+                            </div>
+                        </section>
+                  </div>
+            </div>
+        </div>
+
+    </div> -->
+	<script data-require="angular.js@*" data-semver="1.2.5" src="http://code.angularjs.org/1.2.5/angular.js"></script> 
+	<!--<script src="js/projectlist.js"></script> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="js/jquery.vaccordion.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#va-accordion').vaccordion({
+					visibleSlices	: 5,
+					expandedHeight	: 250,
+					animOpacity		: 0.1,
+					contentAnimSpeed: 100
+				});
+			});
+		</script>
+</body>
+</html>
