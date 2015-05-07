@@ -1,5 +1,6 @@
 var app = angular.module('SaasApp',['ui.router']);
-var urlBase = 'http://localhost:8080';
+//var urlBase = 'http://localhost:8080';
+var urlBase = 'http://54.67.123.126:8080'
 app.config([
 '$stateProvider',
 '$urlRouterProvider',
@@ -131,7 +132,7 @@ app.factory('userService', function($http){
 	}
 
 	userData.createTenant = function(user, sdlcType){
-		return $http.post('http://localhost:8080/createTenant/'+sdlcType, user).success(function(data){
+		return $http.post(urlBase+'/createTenant/'+sdlcType, user).success(function(data){
 			console.log("create Tenant response: "+JSON.stringify(data))
 			angular.copy(data, userData.data);
 		});
@@ -218,7 +219,7 @@ app.factory('projectService', function($http){
 	}
 
 	project.getAllProjects = function(userId){
-		return $http.get('http://localhost:8080/getprojects/'+userId).success(function(data){
+		return $http.get(urlBase+'/getprojects/'+userId).success(function(data){
 			//console.log("create Tenant response: "+JSON.stringify(data))
 			angular.copy(data, project.data);
 		});
