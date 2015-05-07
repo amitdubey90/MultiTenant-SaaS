@@ -1,4 +1,6 @@
-
+<!DOCTYPE html>
+<html>
+<head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -33,6 +35,8 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 </head>
+
+<body>
     <!-- Start Logo Section -->
 
     <section id="logo-section" class="text-center">
@@ -51,10 +55,11 @@
     <div class="mainbody-section text-center">
         <div class="container">
             <div class="row" id="projectList">
+            <div title="Add New Project" ng-click="createProjectForm()"><img style="width:4%; margin-left:-36%; margin-top:0%;" src="images/blue-document-plus-icon.png"/></div>
                 <ul class="widget widget-menu unstyled" style="margin-left:29%; width:40%;">
-                                <li style="height:3em;" class="active" ng-repeat="project in data" ng-if="project.fieldList[0] == 'project_name'"><a href="index.html">
+                                <li style="height:3.6em;" class="active" ng-repeat="project in data" ng-if="project.fieldList[0] == 'project_name'"><a href="index.html">
                                 <p>
-                                                <strong><a class="go" ng-click="getProjectDetails(project.recordId[0])">{{project.valueList[0]}}<p style="display:none;">{{project.recordId[0]}}</p></a></strong>
+                                                <strong><a  class="go" ng-click="getProjectDetails(project.recordId[0])">{{project.valueList[0]}}<p style="display:none;">{{project.recordId[0]}}</p></a></strong>
                                             </p>
                                 </li>
                             </ul>
@@ -66,10 +71,31 @@
                 	<strong>{{key}}:{{value}}</strong>
                 </p>
             </span>
+            <p class="submit" style="display:inline-block;"><input type="button" class="btn" name="register" 
+                ng-click="getProjectActivities()" value="View Project Activities"></p>
+            <p class="submit" style="display:inline-block;"><input type="button" class="btn" name="register" value="View Project Status"></p>
+            </div>
+            <div class="row" id="addProject" style="display:none;">
+            	<div class="col-lg-6 col-lg-offset-3 text-center">
+                        <section class="container" style="margin-left:-54%;">
+                            <div class="login" style="width:32%;">
+                              <h1>Create New Project</h1>
+                              <form method="post" ng-submit="createProject(project.recordId[0])">
+                              	<p><input type="text" id="projectName" placeholder="Project Name" ng-model="projectName"></input></p>
+                                <p><input type="text" id="projectDesc" placeholder="Project Description" ng-model="projectDesc"></input></p>
+                                <p><input type="text" id="owner" placeholder="Owner" ng-model="owner"></input></p>
+                                <p><input type="text" id="startDate" placeholder="Start Date" ng-model="startDate"></input></p>
+                                <p><input type="text" id="endDate" placeholder="End Date" ng-model="endDate"></input></p>
+                                <p class="submit"><input type="submit" name="register" value="Create"></p>
+                              </form>
+                            </div>
+                        </section>
+                  </div><!-- /.col-md-3 -->
             </div>
         </div>
     </div>
 	<script data-require="angular.js@*" data-semver="1.2.5" src="http://code.angularjs.org/1.2.5/angular.js"></script> 
+	<!--<script src="js/projectlist.js"></script> -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
@@ -84,3 +110,5 @@
 				});
 			});
 		</script>
+</body>
+</html>
